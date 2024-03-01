@@ -55,13 +55,13 @@ router.post("/signin", async (req, res) => {
       );
 
       if (!comparePassword) {
-        res.status(400).json({ message: "invalid password" });
+        res.status(400).json({ message: "Invalid password" });
       } else {
         const data = { user: userExist.id };
         const token = jwt.sign(data, secret_key);
         res
           .status(200)
-          .json({ message: "login succesfull", token, name: userExist.name });
+          .json({ message: "Login successful", token, name: userExist.name });
       }
     }
   } catch (error) {
