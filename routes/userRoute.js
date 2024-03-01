@@ -14,7 +14,7 @@ router.post("/register", async (req, res) => {
   try {
     const userExist = await Users.findOne({ email });
     if (userExist) {
-      res.status(400).json({ message: "email is already registered" });
+      res.status(400).json({ message: "Email is already registered. Plaese Sign in" });
     } else {
       const securePassword = await bcrypt.hash(password, 10);
       const user = await Users.create({
@@ -27,7 +27,7 @@ router.post("/register", async (req, res) => {
       const data = { user: user.id };
       const token = jwt.sign(data, secret_key);
       res.status(200).json({
-        message: "Registration successful",
+        message: "Registration successful. Plaese Sign in now",
         token,
         user,
       });
